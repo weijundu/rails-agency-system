@@ -1,0 +1,15 @@
+.button-banner {
+  -webkit-transition-duration: 0.3s; /* Safari */
+  transition-duration: 0.3s;
+  color: white;
+  border: 3px solid white;
+  padding: 10px 30px;
+  border-radius: 10px;
+  &:hover {
+    // background-color: rgba(225, 225, 225, 0.6);
+    text-decoration: none;
+    color: white;
+    opacity: 0.8
+  }
+
+}
