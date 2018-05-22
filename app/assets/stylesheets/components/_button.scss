@@ -6,9 +6,10 @@
   padding: 10px 30px;
   border-radius: 10px;
   &:hover {
-    background-color: rgba(225, 225, 225, 0.6);
-    color: white;
+    // background-color: rgba(225, 225, 225, 0.6);
     text-decoration: none;
+    color: white;
+    opacity: 0.8
   }
 
 }
