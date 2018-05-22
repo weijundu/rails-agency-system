@@ -1,0 +1,15 @@
+<h1>Companies</h1>
+<ul>
+  <% @companies.each do |company|%>
+  <% if company.user == current_user || current_user.role == 'host'%>
+  <li>
+    <%=link_to company.name, company_path(company)%> created by <%= company.user.email %>
+  </li>
+  <% end %>
+  <% end %>
+</ul>
+
+<% if @companies.where(user: current_user).count == 0 && policy(Company).new? %>
+<%= link_to "Add company", new_company_path, class: "btn btn-primary"%>
+<% end %>
+<%= link_to "Back", options_path, class: "btn btn-primary"%>

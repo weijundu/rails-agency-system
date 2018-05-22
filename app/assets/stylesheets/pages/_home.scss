@@ -1,1 +1,60 @@
 // Specific CSS for your home-page
+.banner {
+  margin: -50px -100px;
+  color: white;
+  text-align: center;
+  height: 93vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.banner h1 {
+  font-size: 50px;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button {
+  margin-top: 20px;
+  width: 150px;
+  font-size: 25px;
+}
+
+
+.banner p {
+  font-size: 25px;
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
+  opacity: 0.6;
+  margin-bottom: 30px;
+}
+
+.show-wrapper {
+  width: 100%;
+  height: 40vh;
+  background-size: cover;
+  background-position: center top;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.content {
+  display:flex;
+}
+
+.left{
+  padding: 10px 50px;
+  width: 50%;
+}
+
+.right {
+  padding: 10px 50px;
+  width: 50%;
+  ul {
+    list-style: none;
+    padding-left: 0px;
+  }
+}

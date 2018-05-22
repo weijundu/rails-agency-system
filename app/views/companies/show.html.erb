@@ -1,0 +1,9 @@
+<h1><%= @company.name %></h1>
+<p><%= @company.intro %></p>
+<p><%= @company.website %></p>
+<p>created by <%= @company.user.email %></p>
+<% if policy(@company).edit? %>
+<%= link_to "Edit", edit_company_path(@company), class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "Back", options_path, class: "btn btn-primary"%>

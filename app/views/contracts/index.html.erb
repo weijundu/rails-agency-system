@@ -1,0 +1,12 @@
+<h1>Contracts</h1>
+<ul>
+  <% @contracts.each do |contract|%>
+  <% if contract.user == current_user || contract.profile.user == current_user %>
+  <li>
+    <%=link_to contract.note, contract_path(contract)%> for <%= contract.profile.name %> created by <%= link_to contract.user.companies.first.name, company_path(contract.user.companies.first)  %> <%= contract.start_date %> <%= contract.end_date %>
+  </li>
+  <% end %>
+  <% end %>
+</ul>
+
+<%= link_to "Back", options_path, class: "btn btn-primary"%>

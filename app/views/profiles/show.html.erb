@@ -1,0 +1,10 @@
+<h1><%= @profile.name %></h1>
+<p><%= @profile.cv %></p>
+<p>created by <%= @profile.user.email %></p>
+<% if policy(@profile).edit? %>
+<%= link_to "Edit", edit_profile_path(@profile), class: "btn btn-primary" %>
+<% end %>
+<% if current_user.role == 'host' %>
+<%= link_to "Add contract", new_profile_contract_path(@profile), class: "btn btn-primary" %>
+<% end %>
+<%= link_to "Back", options_path, class: "btn btn-primary"%>

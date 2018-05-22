@@ -1,0 +1,68 @@
+<div class="wrpper">
+  <div class="container">
+    <h1>Welcome</h1>
+    <div class="row">
+      <% if current_user.role == 'appentice'%>
+        <% if Profile.find_by(user: current_user)%>
+
+          <div class="col-xs-12 col-md-4">
+            <%= link_to edit_profile_path(Profile.find_by(user: current_user)) do  %>
+            <div class="image" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.2) 0%, rgba(0,36,61,0.2) 50%), url('https://media.glamour.com/photos/5695aa8e93ef4b09520dfd8f/master/w_1250,c_limit/sex-love-life-2009-12-1207-01_profile_pic_li.jpg')" >
+              <h3>Edit Profile</h3>
+            </div>
+            <% end %>
+          </div>
+
+        <% else %>
+
+          <div class="col-xs-12 col-md-4">
+            <%= link_to new_profile_path do  %>
+            <div class="image" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.2) 0%, rgba(0,36,61,0.2) 50%), url('https://media.glamour.com/photos/5695aa8e93ef4b09520dfd8f/master/w_1250,c_limit/sex-love-life-2009-12-1207-01_profile_pic_li.jpg')" >
+              <h3>Add Profile</h3>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <% if Company.find_by(user: current_user)%>
+
+          <div class="col-xs-12 col-md-4">
+            <%= link_to edit_company_path(Company.find_by(user: current_user)) do  %>
+            <div class="image" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.2) 0%, rgba(0,36,61,0.2) 50%), url('https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/1015514/1160/772/m1/fpnw/wm0/net1-.jpg?1456141243&s=09147eb4bd7634f7d07f2ba74f0b9bbf')" >
+              <h3>Edit Company Profile</h3>
+            </div>
+            <% end %>
+          </div>
+
+        <% else %>
+
+          <div class="col-xs-12 col-md-4">
+            <%= link_to new_company_path do  %>
+            <div class="image" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.2) 0%, rgba(0,36,61,0.2) 50%), url('https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/1015514/1160/772/m1/fpnw/wm0/net1-.jpg?1456141243&s=09147eb4bd7634f7d07f2ba74f0b9bbf')" >
+              <h3>Add Company Profile</h3>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
+
+          <div class="col-xs-12 col-md-4">
+            <%= link_to profiles_path do  %>
+            <div class="image" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.2) 0%, rgba(0,36,61,0.2) 50%), url('http://blog.atg-training.co.uk/wp-content/uploads/2013/04/ATG_successfulapprentices_300413.jpg')" >
+              <h3>View Appentices</h3>
+            </div>
+            <% end %>
+          </div>
+      <% end %>
+
+      <div class="col-xs-12 col-md-4">
+        <%= link_to contracts_path do  %>
+        <div class="image" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.2) 0%, rgba(0,36,61,0.2) 50%), url('https://ddt5juiq7j39k.cloudfront.net/wp-content/uploads/2013/10/Deals_handshake_resize.jpg')" >
+          <h3>View Contracts</h3>
+        </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+

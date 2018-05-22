@@ -1,0 +1,19 @@
+.image {
+  width: auto;
+  height: 220px;
+  border: 1px solid rgb(230, 230, 230);
+  margin-bottom: 30px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  background-size: cover;
+  background-position: center;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h3 {
+    margin: 0px 0px;
+    font-size: 30px;
+    color: white;
+  }
+}
