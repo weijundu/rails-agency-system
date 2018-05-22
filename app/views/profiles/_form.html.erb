@@ -3,9 +3,12 @@
     <div class="col-sm-4 col-sm-offset-4">
       <h1>Profile</h1>
       <%= simple_form_for @profile do |t| %>
-      <%= t.input :name, class: "form-control" %>
-      <%= t.input :cv, class: "form-control" %>
+      <%= t.input :first_name, class: "form-control" %>
+      <%= t.input :last_name, class: "form-control" %>
+      <%= t.input :cv, label: "summary", class: "form-control" %>
+
       <%= t.submit class: "btn btn-primary" %>
+      <%= link_to "Back", options_path, class: "btn btn-primary"%>
       <% end %>
     </div>
   </div>
