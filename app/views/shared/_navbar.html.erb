@@ -26,6 +26,7 @@
           <% unless current_user.companies.first == nil%>
         <div class="circular_name">
           <%= link_to current_user.companies.first.name[0], profile_path(current_user), class: "initial" %>
+
         </div>
         <% else %>
           <%= link_to current_user.email, profile_path(current_user)%>
