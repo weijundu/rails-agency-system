@@ -10,6 +10,7 @@
       <%= t.input :phone_number, class: "form-control" %>
       <%= t.submit class: "btn btn-primary" %>
       <%= link_to "Back", options_path, class: "btn btn-primary"%>
+      <%= link_to "Delete", company_path(@company), method: :delete, data: { confirm: "Are you sure?" } %>
       <% end %>
     </div>
   </div>
