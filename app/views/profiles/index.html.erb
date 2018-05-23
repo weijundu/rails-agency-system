@@ -1,8 +1,8 @@
 <h1>Profiles</h1>
 <ul>
   <% @profiles.each do |profile|%>
-    <% unless profile == "" %>
-      <% if profile.user == current_user || current_user.role == 'host'%>
+    <% unless profile == [""] %>
+      <% if profile == current_user || current_user.role == 'host'%>
       <li>
         <%=link_to profile.first_name, profile_path(profile)%> created by <%= profile.user.email %>
       </li>
@@ -12,7 +12,6 @@
 </ul>
 
 <% unless @profiles == [""] %>
-raise
   <% if @profiles.where(user: current_user).count == 0 && policy(Profile).new? %>
     <%= link_to "Add profile", new_profile_path, class: "btn btn-primary"%>
   <% end %>

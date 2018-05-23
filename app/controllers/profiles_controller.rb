@@ -3,11 +3,11 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only:[:show, :edit, :update, :delete]
 
   def index
-    if current_user == "host"
+    if current_user.role == "host"
       @profiles = policy_scope(Profile)
       @profiles = [""] if @profiles == nil
     else
-      @profiles = [""] if @profiles == nil
+      @profiles = [current_user]
     end
   end
 
