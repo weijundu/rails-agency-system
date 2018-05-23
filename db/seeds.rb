@@ -1,6 +1,11 @@
+Profile.delete_all
+Company.delete_all
+User.delete_all
+
 user1 = User.create(
   email: "user1@lynk.com",
-  password: "123456"
+  password: "123456",
+  role: "host"
   )
 
 Company.create(
@@ -14,7 +19,8 @@ Company.create(
 
 user2 = User.create(
   email: "user2@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"host"
   )
 
 Company.create(
@@ -28,7 +34,8 @@ Company.create(
 
 user3 = User.create(
   email: "user3@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"host"
   )
 
 Company.create(
@@ -42,7 +49,8 @@ Company.create(
 
 user4 = User.create(
   email: "user4@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"host"
   )
 
 Company.create(
@@ -56,7 +64,8 @@ Company.create(
 
 user5 = User.create(
   email: "user5@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"host"
   )
 
 Company.create(
@@ -70,7 +79,8 @@ Company.create(
 
 user6 = User.create(
   email: "user6@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"host"
   )
 
 Company.create(
@@ -84,7 +94,8 @@ Company.create(
 
 user7 = User.create(
   email: "user7@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"host"
   )
 
 Company.create(
@@ -98,7 +109,8 @@ Company.create(
 
 user8 = User.create(
   email: "user8@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"host"
   )
 
 Company.create(
@@ -112,7 +124,8 @@ Company.create(
 
 user9 = User.create(
   email: "user9@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"host"
   )
 
 Company.create(
@@ -126,7 +139,8 @@ Company.create(
 
 user10 = User.create(
   email: "user10@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"apprentice"
   )
 
 Profile.create(
@@ -141,7 +155,8 @@ Profile.create(
 
 user11 = User.create(
   email: "user11@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"apprentice"
   )
 
 Profile.create(
@@ -156,7 +171,8 @@ Profile.create(
 
 user12 = User.create(
   email: "user12@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"apprentice"
   )
 
 Profile.create(
@@ -171,7 +187,8 @@ Profile.create(
 
 user13 = User.create(
   email: "user13@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"apprentice"
   )
 
 Profile.create(
@@ -186,7 +203,8 @@ Profile.create(
 
 user14 = User.create(
   email: "user14@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"apprentice"
   )
 
 Profile.create(
@@ -201,7 +219,8 @@ Profile.create(
 
 user15 = User.create(
   email: "user15@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"apprentice"
   )
 
 Profile.create(
@@ -216,7 +235,8 @@ Profile.create(
 
 user16 = User.create(
   email: "user16@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"apprentice"
   )
 
 Profile.create(
@@ -231,7 +251,8 @@ Profile.create(
 
 user17 = User.create(
   email: "user17@lynk.com",
-  password: "123456"
+  password: "123456",
+  role:"apprentice"
   )
 
 Company.create(
