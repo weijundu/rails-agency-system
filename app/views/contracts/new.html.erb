@@ -4,10 +4,11 @@
       <h1>Contract</h1>
       <%= simple_form_for [@profile, @contract] do |t| %>
       <%= t.input :note, class: "form-control" %>
-      <%= t.input :start_date, class: "form-control" %>
-      <%= t.input :end_date, class: "form-control" %>
+      <%= t.input :start_date, input_html: {class: "form-control datepicker"} %>
+      <%= t.input :end_date, input_html: {class: "form-control datepicker"} %>
       <%= t.submit class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
 </div>
+
