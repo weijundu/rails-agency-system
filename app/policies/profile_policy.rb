@@ -6,20 +6,20 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def create?
-    user_is_appentice?
+    user_is_apprentice?
   end
 
   def update?
-    record.user == user || user_is_appentice?
+    record.user == user || user_is_apprentice?
   end
 
   def show?
-    record.user == user || !user_is_appentice?
+    record.user == user || !user_is_apprentice?
   end
 
 
 private
-def user_is_appentice?
-  user.role == 'appentice'
+def user_is_apprentice?
+  user.role == 'apprentice'
 end
 end
