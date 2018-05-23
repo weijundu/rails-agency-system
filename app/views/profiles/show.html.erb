@@ -1,5 +1,8 @@
 <h1><%= @profile.first_name %></h1>
 <p><%= @profile.last_name %></p>
+<p><%= @profile.trade %></p>
+<p><%= @profile.skills %></p>
+<p><%= @profile.borough %></p>
 <p><%= @profile.cv %></p>
 <p>created by <%= @profile.user.email %></p>
 <% if policy(@profile).edit? %>
