@@ -1,0 +1,18 @@
+.card-container {
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #F4F4F4;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.apprentice-card {
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  margin: 10px;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  padding: 7px;
+}
