@@ -1,6 +1,6 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to "Simple Agency System", options_path, class: "logo" %>
+  <%= link_to "L Y N K", options_path, class: "logo" %>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm nav-link">
@@ -12,7 +12,7 @@
     <% if current_user.role == 'apprentice'%>
      <% unless current_user.profiles.first == nil%>
         <div class="circular_name">
-          <%= link_to current_user.profiles.first.first_name[0], profile_path(current_user), class: "initial" %>
+          <%= link_to current_user.profiles.first.first_name[0], profile_path(current_user.profiles.first), class: "initial" %>
         </div>
         <% else %>
           <%= link_to current_user.email, options_path%>
@@ -21,7 +21,7 @@
     <% elsif current_user.role == 'host'%>
           <% unless current_user.companies.first == nil%>
         <div class="circular_name">
-          <%= link_to current_user.companies.first.name[0], profile_path(current_user), class: "initial" %>
+          <%= link_to current_user.companies.first.name[0], company_path(current_user.companies.first), class: "initial" %>
 
         </div>
         <% else %>

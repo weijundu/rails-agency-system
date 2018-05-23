@@ -21,9 +21,15 @@
     <% @profiles.each do |profile|%>
       <% unless profile == [""] %>
         <% if profile == current_user || current_user.role == 'host'%>
+
+        <%=link_to profile_path(profile) do %>
           <div class="apprentice-card">
-            <h3><%=link_to profile.first_name, profile_path(profile)%></h3> <%= profile.trade %>
+
+            <h3> <%= profile.first_name %> </h3>
+           <p> <%= profile.trade %> </p>
+
           </div>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
