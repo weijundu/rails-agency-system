@@ -4,8 +4,12 @@ class ProfilesController < ApplicationController
 
   def index
     if current_user.role == "host"
-      @profiles = policy_scope(Profile)
-      @profiles = [""] if @profiles == nil
+      if params[:borough].blank?
+        @profiles = policy_scope(Profile)
+        @profiles = [""] if @profiles == nil
+      else
+        @profiles = policy_scope(Profile).where(borough: params[:borough].capitalize)
+      end
     else
       @profiles = [current_user]
     end
