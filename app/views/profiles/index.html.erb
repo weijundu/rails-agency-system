@@ -1,33 +1,35 @@
 <h1>Apprentices</h1>
 
-<% boroughs = ["Camden", "Royal Borough of Greenwich", "Hackney", "Hammersmith and Fulham", "Islington", "Royal Borough of Kensington and Chelsea", "Lambeth",
-"Lewisham", "Southwark", "Tower Hamlets", "Wandsworth", "City of Westminster", "Barking and Dagenham", "Barnet", "Bexley", "Brent", "Bromley", "Croydon", "Ealing", "Enfield", "Haringey", "Harrow", "Havering", "Hillingdon", "Hounslow", "Royal Borough of Kingston upon Thames", "Merton", "Newham", "Redbridge", "Richmond upon Thames", "Sutton", "Waltham Forest"] %>
-
-<%= form_tag profiles_path, method: :get do %>
-  <%= text_field_tag :borough,
-    params[:borough],
-    class: "form-control",
-    placeholder: "Search by borough"
-  %>
-<% end %>
-
-<ul>
-  <% @profiles.each do |profile|%>
-    <% unless profile == [""] %>
-      <% if profile == current_user || current_user.role == 'host'%>
-      <li>
-        <%=link_to profile.first_name, profile_path(profile)%> created by <%= profile.user.email %>
-      </li>
-      <% end %>
-    <% end %>
-  <% end %>
-</ul>
-
+<br><br>
 <% unless @profiles == [""] %>
   <% if @profiles.where(user: current_user).count == 0 && policy(Profile).new? %>
     <%= link_to "Add profile", new_profile_path, class: "btn btn-primary"%>
   <% end %>
 <% end %>
 <%= link_to "Back", options_path, class: "btn btn-primary"%>
+
+<div class="container">
+  <%= form_tag profiles_path, method: :get do %>
+    <%= text_field_tag :borough,
+      params[:borough],
+      class: "form-control",
+      placeholder: "Search by borough"
+    %>
+  <% end %>
+  <br><br><br>
+<div class="card-container">
+    <% @profiles.each do |profile|%>
+      <% unless profile == [""] %>
+        <% if profile == current_user || current_user.role == 'host'%>
+          <div class="apprentice-card">
+            <h3><%=link_to profile.first_name, profile_path(profile)%></h3> <%= profile.trade %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+</div>
+
+
+</div>
 
 

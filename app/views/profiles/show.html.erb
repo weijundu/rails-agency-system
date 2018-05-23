@@ -1,10 +1,9 @@
-<h1><%= @profile.first_name %></h1>
-<p><%= @profile.last_name %></p>
-<p><%= @profile.trade %></p>
-<p><%= @profile.skills %></p>
-<p><%= @profile.borough %></p>
-<p><%= @profile.cv %></p>
-<p>created by <%= @profile.user.email %></p>
+<h1><%= @profile.first_name%> <%= @profile.last_name%></h1>
+<p>Trade: <%= @profile.trade %></p>
+<p>Skills: <%= @profile.skills %></p>
+<p>Borough: <%= @profile.borough %></p>
+<p>Personal statement: <%= @profile.cv %></p>
+
 <% if policy(@profile).edit? %>
   <%= link_to "Edit", edit_profile_path(@profile), class: "btn btn-primary" %>
 <% end %>
