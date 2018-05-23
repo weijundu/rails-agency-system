@@ -1,4 +1,16 @@
-<h1>Profiles</h1>
+<h1>Apprentices</h1>
+
+<% boroughs = ["Camden", "Royal Borough of Greenwich", "Hackney", "Hammersmith and Fulham", "Islington", "Royal Borough of Kensington and Chelsea", "Lambeth",
+"Lewisham", "Southwark", "Tower Hamlets", "Wandsworth", "City of Westminster", "Barking and Dagenham", "Barnet", "Bexley", "Brent", "Bromley", "Croydon", "Ealing", "Enfield", "Haringey", "Harrow", "Havering", "Hillingdon", "Hounslow", "Royal Borough of Kingston upon Thames", "Merton", "Newham", "Redbridge", "Richmond upon Thames", "Sutton", "Waltham Forest"] %>
+
+<%= form_tag profiles_path, method: :get do %>
+  <%= text_field_tag :borough,
+    params[:borough],
+    class: "form-control",
+    placeholder: "Search by borough"
+  %>
+<% end %>
+
 <ul>
   <% @profiles.each do |profile|%>
     <% unless profile == [""] %>
@@ -17,3 +29,5 @@
   <% end %>
 <% end %>
 <%= link_to "Back", options_path, class: "btn btn-primary"%>
+
+
