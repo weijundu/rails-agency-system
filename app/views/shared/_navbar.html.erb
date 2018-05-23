@@ -9,10 +9,10 @@
 
       <!-- Links when logged in -->
       <div class="circular_name">
-        <%= link_to current_user.profiles.first.first_name[0], profile_path(current_user), class: "initial" %>
+        <%# link_to current_user.profiles.first.first_name[0], profile_path(current_user), class: "initial" %>
       </div>
       <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to t(".sign_out", default: "Log out"), destroy_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_out", default: "Log out"), destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- Avatar with dropdown menu -->
       <!-- <div class="navbar-wagon-item">
         <div class="dropdown">
