@@ -1,8 +1,6 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-<!--     <%= image_tag "logo.png", height: 50 %> -->
-  <% end %>
+  <%= link_to "Simple Agency System", options_path, class: "logo" %>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
@@ -10,12 +8,13 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-     <!--  <%= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <div class="circular_name">
+        <%= link_to current_user.profiles.first.first_name[0], profile_path(current_user), class: "initial" %>
+      </div>
       <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
- -->
+      <%= link_to t(".sign_out", default: "Log out"), destroy_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- Avatar with dropdown menu -->
-      <div class="navbar-wagon-item">
+      <!-- <div class="navbar-wagon-item">
         <div class="dropdown">
           <%= link_to current_user.email, "#", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
@@ -36,7 +35,7 @@
             </li>
           </ul>
         </div>
-      </div>
+      </div> -->
     <% else %>
       <!-- Login link (when logged out) -->
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
