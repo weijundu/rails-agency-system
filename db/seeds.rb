@@ -246,7 +246,7 @@ Profile.create(
   trade: "boilermaker",
   skills: "good with boilers",
   borough: "Croydon",
-  user: user15
+  user: user16
   )
 
 user17 = User.create(

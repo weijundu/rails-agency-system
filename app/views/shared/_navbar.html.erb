@@ -3,7 +3,7 @@
   <%= link_to "Simple Agency System", options_path, class: "logo" %>
 
   <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+  <div class="navbar-wagon-right hidden-xs hidden-sm nav-link">
 
     <% if user_signed_in? %>
 
@@ -15,7 +15,7 @@
           <%= link_to current_user.profiles.first.first_name[0], profile_path(current_user), class: "initial" %>
         </div>
         <% else %>
-          <%= link_to current_user.email, profile_path(current_user)%>
+          <%= link_to current_user.email, options_path%>
         <% end %>
 
     <% elsif current_user.role == 'host'%>
@@ -25,7 +25,7 @@
 
         </div>
         <% else %>
-          <%= link_to current_user.email, profile_path(current_user)%>
+          <%= link_to current_user.email, options_path%>
         <% end %>
         <% end %>
         <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
