@@ -3,7 +3,7 @@
   <% @contracts.each do |contract|%>
   <% if contract.user == current_user || contract.profile.user == current_user %>
   <li>
-    <%= contract.note %> for <%= contract.profile.first_name %> created by <%= link_to contract.user.companies.first.name, company_path(contract.user.companies.first)  %> <%= contract.start_date %> <%= contract.end_date %>
+    <%= contract.note %> for <%= contract.profile.first_name %> created by <%= link_to contract.user.companies.first.name, company_path(contract.user.companies.first)  %> <%= contract.start %> <%= contract.finished %>
   </li>
   <% end %>
   <% end %>
