@@ -1,3 +1,9 @@
+<% if @profile.image?  %>
+<%= cl_image_tag @profile.image.url(:thumbn)%>
+<% else %>
+<%= cl_image_tag("profile-photo.png", width: 200, height: 200, crop: :fill) %>
+<% end %>
+
 <h1><%= @profile.first_name%> <%= @profile.last_name%></h1>
 <p>Trade: <%= @profile.trade %></p>
 <p>Skills: <%= @profile.skills %></p>
