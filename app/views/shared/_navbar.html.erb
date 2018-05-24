@@ -11,21 +11,34 @@
 
     <% if current_user.role == 'apprentice'%>
      <% unless current_user.profiles.first == nil%>
-        <div class="circular_name">
-          <%= link_to current_user.profiles.first.first_name[0], options_path(current_user.profiles.first), class: "initial" %>
+        <%= link_to profile_path(current_user.profiles.first) do %>
+        <div class="circular_name initial">
+           <%= current_user.profiles.first.first_name[0]  %>
         </div>
+        <% end %>
         <% else %>
-          <%= link_to current_user.email, options_path%>
+          <%= link_to options_path(current_user.profiles.first) do %>
+          <div class="circular_name initial">
+           <i class="fal fa-user-alt"></i>
+        </div>
+        <% end %>
+
         <% end %>
 
     <% elsif current_user.role == 'host'%>
           <% unless current_user.companies.first == nil%>
-        <div class="circular_name">
-          <%= link_to current_user.companies.first.name[0], company_path(current_user.companies.first), class: "initial" %>
-
+          <%= link_to company_path(current_user.companies.first) do %>
+        <div class="circular_name initial ">
+          <%= current_user.companies.first.name[0] %>
         </div>
+        <% end %>
+
         <% else %>
-          <%= link_to current_user.email, options_path%>
+           <%= link_to options_path(current_user.profiles.first) do %>
+          <div class="circular_name initial">
+           <i class="fal fa-user-alt"></i>
+        </div>
+        <% end %>
         <% end %>
         <% end %>
         <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
