@@ -21,9 +21,20 @@
   border-radius: 3px;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
   padding: 5px;
+  position: relative;
 }
 
 .map-container {
   width: 50%;
   height: 100%;
+}
+
+.name-card {
+  position: absolute;
+  top: -5px;
+}
+
+.location-card {
+  position: absolute;
+  bottom: 0px;
 }

@@ -26,10 +26,13 @@
 
         <%=link_to profile_path(profile) do %>
           <div class="apprentice-card">
-
-            <h3> <%= profile.first_name %> </h3>
-           <p> <%= profile.trade.capitalize %> </p>
-           <p>Lives <%= Geocoder::Calculations.distance_between([profile.latitude, profile.longitude], params[:loc_search]).round(2) %>km away</p>
+            <div class="name-card">
+              <h3> <%= profile.first_name %> </h3>
+              <p> <%= profile.trade.capitalize %> </p>
+            </div>
+            <div class="location-card">
+              <p><strong><%= profile.borough.capitalize %></strong> | Lives <%= Geocoder::Calculations.distance_between([profile.latitude, profile.longitude], params[:loc_search]).round(2) %>km away</p>
+            </div>
           </div>
           <% end %>
         <% end %>
