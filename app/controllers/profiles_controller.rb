@@ -6,13 +6,13 @@ class ProfilesController < ApplicationController
 
   def index
     if current_user.role == "host"
+      json = JSON.parse(open("https://maps.googleapis.com/maps/api/geocode/json?address=#{params[:loc_search]}&key=AIzaSyBWlO4s372Rv78tUsPdBLt5c3m7jBlnuGE").read)
+      @lat = json["results"][0]["geometry"]["location"]["lat"]
+      @lng = json["results"][0]["geometry"]["location"]["lng"]
       if params[:loc_search].blank?
         @profiles = policy_scope(Profile)
         @profiles = [""] if @profiles == nil
       elsif params[:loc_search].match(/\A[a-z]+\d+/)
-        json = JSON.parse(open("https://maps.googleapis.com/maps/api/geocode/json?address=#{params[:loc_search]}&key=AIzaSyBWlO4s372Rv78tUsPdBLt5c3m7jBlnuGE").read)
-        @lat = json["results"][0]["geometry"]["location"]["lat"]
-        @lng = json["results"][0]["geometry"]["location"]["lng"]
         @profiles = policy_scope(Profile).where.not(latitude: nil, longitude: nil, first_name: nil).near([@lat, @lng], 5)
 
       else
