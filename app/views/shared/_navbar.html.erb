@@ -1,6 +1,6 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to "L Y N K", options_path, class: "logo" %>
+  <%= link_to "L Y N K", root_path, class: "logo" %>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm nav-link">
@@ -12,7 +12,7 @@
     <% if current_user.role == 'apprentice'%>
      <% unless current_user.profiles.first == nil%>
         <div class="circular_name">
-          <%= link_to current_user.profiles.first.first_name[0], profile_path(current_user.profiles.first), class: "initial" %>
+          <%= link_to current_user.profiles.first.first_name[0], options_path(current_user.profiles.first), class: "initial" %>
         </div>
         <% else %>
           <%= link_to current_user.email, options_path%>
@@ -32,8 +32,6 @@
         <%= link_to destroy_user_session_path, method: :delete do %>
           <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
         <% end %>
-
-
 
 
       <% else %>

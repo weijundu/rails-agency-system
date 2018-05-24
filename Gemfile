@@ -10,6 +10,7 @@ gem 'puma'
 gem 'rails', '5.1.6'
 gem 'redis'
 gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
@@ -19,6 +20,9 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem "pundit"
+
+# Geocoding
+gem 'geocoder'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

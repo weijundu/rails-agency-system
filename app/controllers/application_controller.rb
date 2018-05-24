@@ -16,7 +16,12 @@ class ApplicationController < ActionController::Base
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   private
+
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(active_)?admin)|(^pages$)/
   end
+
+    def after_sign_in_path_for(resource)
+      request.env['omniauth.origin'] || options_path
+    end
 end

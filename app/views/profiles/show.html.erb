@@ -1,8 +1,18 @@
+<% if @profile.image?  %>
+<%= cl_image_tag @profile.image.url(:thumbn)%>
+<% else %>
+<%= cl_image_tag("profile-photo.jpg", width: 200, height: 200, crop: :fill) %>
+<% end %>
+
 <h1><%= @profile.first_name%> <%= @profile.last_name%></h1>
 <p>Trade: <%= @profile.trade %></p>
 <p>Skills: <%= @profile.skills %></p>
 <p>Borough: <%= @profile.borough %></p>
 <p>Personal statement: <%= @profile.cv %></p>
+<% if current_user.role == 'apprentice'%>
+  <p>Address: <%= @profile.address %></p>
+<% end %>
+
 
 <% if policy(@profile).edit? %>
   <%= link_to "Edit", edit_profile_path(@profile), class: "btn btn-primary" %>
