@@ -87,12 +87,12 @@
 }
 
 .initial {
-  color: white;
+  color: $blue;
   font-weight: bolder;
 }
 
-.initial:hover{
-    color: white;
+a .initial:hover{
+  color: white;
 }
 
 .logo {
@@ -107,11 +107,11 @@
 
 .nav-link {
   a {
-  color: #616668 !important;
+  color: #616668;
   font-size: 16px !important;
-}
-a:hover {
-  color: #da552f !important;
-  text-decoration: none !important;
-}
+    a:hover {
+      color: #da552f;
+      text-decoration: none !important;
+    }
+  }
 }
