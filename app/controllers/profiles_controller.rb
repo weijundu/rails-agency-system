@@ -4,11 +4,15 @@ class ProfilesController < ApplicationController
 
   def index
     if current_user.role == "host"
-      if params[:borough].blank?
+      if params[:loc_search].blank?
         @profiles = policy_scope(Profile)
         @profiles = [""] if @profiles == nil
       else
-        @profiles = policy_scope(Profile).where.not(latitude: nil, longitude: nil, first_name: nil).where(borough: params[:borough].capitalize)
+        sql_query = " \
+        profiles.borough @@ :loc_search \
+        OR profiles.address @@ :loc_search \
+        "
+        @profiles = policy_scope(Profile).where.not(latitude: nil, longitude: nil, first_name: nil).where(sql_query, loc_search: "%#{params[:loc_search]}%")
       end
         @markers = @profiles.map do |profile|
         {

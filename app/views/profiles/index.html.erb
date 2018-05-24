@@ -10,12 +10,13 @@
 
 <div class="container">
   <%= form_tag profiles_path, method: :get do %>
-    <%= text_field_tag :borough,
-      params[:borough],
+    <%= text_field_tag :loc_search,
+      params[:loc_search],
       class: "form-control",
       placeholder: "Search by borough"
     %>
   <% end %>
+<%= JSON.parse(params[:loc_search].dataset.markers) %>
   <br><br><br>
 <div class="card-and-map-container">
   <div class="card-container">
@@ -27,8 +28,8 @@
           <div class="apprentice-card">
 
             <h3> <%= profile.first_name %> </h3>
-           <p> <%= profile.trade %> </p>
-
+           <p> <%= profile.trade.capitalize %> </p>
+           <p>Lives <%= Geocoder::Calculations.distance_between([profile.latitude,profile.longitude], [51.53258,-0.07681]).round(2) %>km away</p>
           </div>
           <% end %>
         <% end %>
