@@ -10,6 +10,8 @@
         <%= t.input :borough, class: "form-control" %>
         <%= t.input :cv, label: "Personal statement", class: "form-control" %>
         <%= t.input :address, label: "Address", class: "form-control" %>
+            <%= t.input :image %>
+        <%= t.input :image_cache, as: :hidden %>
         <%= t.submit class: "btn btn-primary" %>
         <%= link_to "Back", options_path, class: "btn btn-primary"%>
         <% unless @profile.id == nil %>
