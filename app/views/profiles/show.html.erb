@@ -9,6 +9,10 @@
 <p>Skills: <%= @profile.skills %></p>
 <p>Borough: <%= @profile.borough %></p>
 <p>Personal statement: <%= @profile.cv %></p>
+<% if current_user.role == 'apprentice'%>
+  <p>Address: <%= @profile.address %></p>
+<% end %>
+
 
 <% if policy(@profile).edit? %>
   <%= link_to "Edit", edit_profile_path(@profile), class: "btn btn-primary" %>

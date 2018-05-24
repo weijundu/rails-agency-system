@@ -17,7 +17,8 @@
     %>
   <% end %>
   <br><br><br>
-<div class="card-container">
+<div class="card-and-map-container">
+  <div class="card-container">
     <% @profiles.each do |profile|%>
       <% unless profile == [""] %>
         <% if profile == current_user || current_user.role == 'host'%>
@@ -33,6 +34,9 @@
         <% end %>
       <% end %>
     <% end %>
+  </div>
+  <div class="map-container" id="map" data-markers="<%= @markers.to_json %>">
+  </div>
 </div>
 
 
