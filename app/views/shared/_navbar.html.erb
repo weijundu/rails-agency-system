@@ -28,7 +28,7 @@
           <%= link_to current_user.email, options_path%>
         <% end %>
         <% end %>
-        <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+        <%= link_to "Dashboard", options_path, class: "navbar-wagon-item navbar-wagon-link" %>
         <%= link_to destroy_user_session_path, method: :delete do %>
           <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
         <% end %>
