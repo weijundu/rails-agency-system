@@ -7,8 +7,10 @@ class ProfilesController < ApplicationController
       if params[:borough].blank?
         @profiles = policy_scope(Profile)
         @profiles = [""] if @profiles == nil
+        comparing_date
       else
         @profiles = policy_scope(Profile).where(borough: params[:borough].capitalize)
+        comparing_date
       end
     else
       @profiles = [current_user]
@@ -54,6 +56,24 @@ class ProfilesController < ApplicationController
 
   def params_profile
     params.require(:profile).permit(:first_name, :last_name, :trade, :skills, :borough, :cv)
+  end
+
+  def comparing_date
+    unless params[:start_date].blank? || params[:end_date].blank?
+      @profiles = @profiles.select do |profile|
+        comparison = Array.new;
+        profile.contracts.each do |p|
+          if p.start == nil || p.finished ==nil
+            comparison << p
+          else
+            range = (p.start..p.finished)
+             comparison << p unless (range.include? params[:start_date].to_date) || (range.include? params[:end_date].to_date)
+
+          end
+        end
+        profile.contracts.count == comparison.count
+      end
+    end
   end
 
 end
