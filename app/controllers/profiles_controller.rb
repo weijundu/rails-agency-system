@@ -8,8 +8,14 @@ class ProfilesController < ApplicationController
         @profiles = policy_scope(Profile)
         @profiles = [""] if @profiles == nil
       else
-        @profiles = policy_scope(Profile).where(borough: params[:borough].capitalize)
+        @profiles = policy_scope(Profile).where.not(latitude: nil, longitude: nil, first_name: nil).where(borough: params[:borough].capitalize)
       end
+        @markers = @profiles.map do |profile|
+        {
+          lat: profile.latitude,
+          lng: profile.longitude
+        }
+        end
     else
       @profiles = [current_user]
     end
@@ -53,7 +59,7 @@ class ProfilesController < ApplicationController
   end
 
   def params_profile
-    params.require(:profile).permit(:first_name, :last_name, :trade, :skills, :borough, :cv)
+    params.require(:profile).permit(:first_name, :last_name, :trade, :skills, :borough, :cv, :address)
   end
 
 end

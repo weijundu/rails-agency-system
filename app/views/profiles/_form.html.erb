@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
+    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
       <h1>Profile</h1>
       <%= simple_form_for @profile do |t| %>
         <%= t.input :first_name, class: "form-control" %>
@@ -8,9 +8,8 @@
         <%= t.input :trade, :collection => %w[carpenter boilermaker carpet/layer electrician ironworker insulation millwright plumber plasterer glazier]%>
         <%= t.input :skills, class: "form-control" %>
         <%= t.input :borough, class: "form-control" %>
-
-        <%= t.input :cv, label: "summary", class: "form-control" %>
-
+        <%= t.input :cv, label: "Personal statement", class: "form-control" %>
+        <%= t.input :address, label: "Address", class: "form-control" %>
         <%= t.submit class: "btn btn-primary" %>
         <%= link_to "Back", options_path, class: "btn btn-primary"%>
         <% unless @profile.id == nil %>
