@@ -29,7 +29,7 @@
 
             <h3> <%= profile.first_name %> </h3>
            <p> <%= profile.trade.capitalize %> </p>
-           <p>Lives <%= Geocoder::Calculations.distance_between([profile.latitude, profile.longitude], [@lat, @lng]).round(2) %>km away</p>
+           <p>Lives <%= Geocoder::Calculations.distance_between([profile.latitude, profile.longitude], params[:loc_search]).round(2) %>km away</p>
           </div>
           <% end %>
         <% end %>

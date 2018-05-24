@@ -14,3 +14,6 @@ if (mapElement) {
     map.fitLatLngBounds(markers);
   }
 }
+
+import { autocomplete } from '../components/autocomplete';
+autocomplete();
