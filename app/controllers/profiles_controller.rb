@@ -55,7 +55,25 @@ class ProfilesController < ApplicationController
   end
 
   def params_profile
-    params.require(:profile).permit(:first_name, :last_name, :trade, :skills, :borough, :cv, :address)
+    params.require(:profile).permit(:first_name, :last_name, :trade, :skills, :borough, :cv, :address, :image)
+  end
+
+  def comparing_date
+    unless params[:start_date].blank? || params[:end_date].blank?
+      @profiles = @profiles.select do |profile|
+        comparison = Array.new;
+        profile.contracts.each do |p|
+          if p.start == nil || p.finished ==nil
+            comparison << p
+          else
+            range = (p.start..p.finished)
+             comparison << p unless (range.include? params[:start_date].to_date) || (range.include? params[:end_date].to_date)
+
+          end
+        end
+        profile.contracts.count == comparison.count
+      end
+    end
   end
 
 end

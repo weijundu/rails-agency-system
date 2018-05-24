@@ -1,20 +1,25 @@
 <h1>Apprentices</h1>
 
 <br><br>
+
 <%# unless @profiles == [""] %>
   <%# if @profiles.where(user: current_user).count == 0 && policy(Profile).new? %>
     <%#= link_to "Add profile", new_profile_path, class: "btn btn-primary"%>
   <%# end %>
 <%# end %>
-<%= link_to "Back", options_path, class: "btn btn-primary"%>
+<%= link_to "back", profiles_path%>
 
 <div class="container">
-  <%= form_tag profiles_path, method: :get do %>
-    <%= text_field_tag :loc_search,
-      params[:loc_search],
-      class: "form-control",
-      placeholder: "Search by borough"
-    %>
+
+    <%= form_tag profiles_path, class: "form-inline", method: :get do %>
+       <%= text_field_tag :borough, params[:borough],
+         class: "form-control",
+         placeholder: "Search by borough" %>
+       <%= text_field_tag :start_date, params[:start_date],
+         class: "form-control datepicker" %>
+       <%= text_field_tag :end_date, params[:end_date],
+         class: "form-control datepicker" %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>
 
   <br><br><br>

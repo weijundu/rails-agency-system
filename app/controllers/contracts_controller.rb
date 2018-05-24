@@ -15,6 +15,8 @@ class ContractsController < ApplicationController
     @contract = Contract.new(contract_params)
     @contract.user = current_user
     @contract.profile = Profile.find(params[:profile_id])
+    @contract.start = @contract.start_date.to_date
+    @contract.finished = @contract.end_date.to_date
     authorize @contract
     @contract.save
     redirect_to contracts_path
@@ -26,6 +28,8 @@ class ContractsController < ApplicationController
 
   def update
     @contract.update(contract_params)
+    @contract.start = @contract.start_date.to_date
+    @contract.finished = @contract.end_date.to_date
     redirect_to contract_path(params[:id])
   end
 

@@ -1,36 +1,43 @@
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(10,2,0,0.4) 0%, rgba(10,2,0,0.4) 100%), url(<%= cl_image_path("home-banner2.jpg", crop: :fill) %>)">
   <div class="banner-content">
     <h1>L Y N K</h1>
-    <h2>Give experience</h2><br>
+    <h2>Find your next apprentice today</h2><br>
     <p><%= link_to "Enter", options_path, class: "button-banner" %></p>
   </div>
 </div>
 
 <div class="steps">
   <br>
-  <h1 class="text-center">How does it work?</h1>
+  <h1 class="main-title">How does it work?</h1>
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-4">
-        <div>
-          <h3>1. Sign up</h3>
+        <div class="title">
+          <h3>Verified, up-to-date job listings</h3>
         </div>
-        <p><strong>L Y N K</strong> will help you find the perfect apprentice to work with.</p>
+        <p class="message">Every day we list dozens of apprentices directly. We’re committed to accurate, high-quality apprenticeships so you won’t find old, duplicated, or spammy listings here.</p>
       </div>
       <div class="col-xs-12 col-md-4">
-        <div>
-          <h3>2. Link up</h3>
+        <div class="title">
+          <h3>Seamless</h3>
         </div>
-        <p>Browse through available apprentices within your area and with the same interests. <strong>L Y N K</strong> will link you up!</p>
+        <p class="message">Organize and automate your apprentice search  on the go. We’ll deliver new, relevant apprentices straight to your inbox.</p>
       </div>
       <div class="col-xs-12 col-md-4">
-        <div>
-          <h3>3. Repeat</h3>
+        <div class="title">
+          <h3>Apprentices and employers connect</h3>
         </div>
-        <p>Enroll as many apprentices as you like at the same time, or plan them out for your future projects!</p>
+        <p class="message">We want apprentices and employers to connect directly. After you find the right apprentice, you’re both connected directly. No fuss.</p>
       </div>
     </div>
   </div>
-  <br><br><br><br><br>
+  <div class="container2">
+      <h3>Proven Track Record</h3>
+      <p>We have a proven track record of helping employers, <br> in all industries, reach and hire qualified candidates. </p>
+      <br><br>
+       <p><strong><%= link_to "LEARN HOW WE DO IT", options_path %></strong></p>
+      <br><br><br>
+  </div>
+<!--   <br><br><br><br><br> -->
 </div>
 
