@@ -4,7 +4,7 @@
 <p>Borough: <%= @profile.borough %></p>
 <p>Personal statement: <%= @profile.cv %></p>
 <% if current_user.role == 'apprentice'%>
-  <p>Address: <%= @profile.address %></p>
+  <p>Postcode: <%= @profile.address %></p>
 <% end %>
 
 

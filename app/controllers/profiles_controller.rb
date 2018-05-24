@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class ProfilesController < ApplicationController
 
   before_action :set_profile, only:[:show, :edit, :update, :delete]
@@ -7,6 +9,12 @@ class ProfilesController < ApplicationController
       if params[:loc_search].blank?
         @profiles = policy_scope(Profile)
         @profiles = [""] if @profiles == nil
+      elsif params[:loc_search].match(/\A[a-z]+\d+/)
+        json = JSON.parse(open("https://maps.googleapis.com/maps/api/geocode/json?address=#{params[:loc_search]}&key=AIzaSyBWlO4s372Rv78tUsPdBLt5c3m7jBlnuGE").read)
+        @lat = json["results"][0]["geometry"]["location"]["lat"]
+        @lng = json["results"][0]["geometry"]["location"]["lng"]
+        @profiles = policy_scope(Profile).where.not(latitude: nil, longitude: nil, first_name: nil).near([@lat, @lng], 5)
+
       else
         sql_query = " \
         profiles.borough @@ :loc_search \

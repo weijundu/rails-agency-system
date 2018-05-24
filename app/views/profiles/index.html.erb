@@ -1,11 +1,11 @@
 <h1>Apprentices</h1>
 
 <br><br>
-<% unless @profiles == [""] %>
-  <% if @profiles.where(user: current_user).count == 0 && policy(Profile).new? %>
-    <%= link_to "Add profile", new_profile_path, class: "btn btn-primary"%>
-  <% end %>
-<% end %>
+<%# unless @profiles == [""] %>
+  <%# if @profiles.where(user: current_user).count == 0 && policy(Profile).new? %>
+    <%#= link_to "Add profile", new_profile_path, class: "btn btn-primary"%>
+  <%# end %>
+<%# end %>
 <%= link_to "Back", options_path, class: "btn btn-primary"%>
 
 <div class="container">
@@ -16,7 +16,7 @@
       placeholder: "Search by borough"
     %>
   <% end %>
-<%= JSON.parse(params[:loc_search].dataset.markers) %>
+
   <br><br><br>
 <div class="card-and-map-container">
   <div class="card-container">
@@ -29,7 +29,7 @@
 
             <h3> <%= profile.first_name %> </h3>
            <p> <%= profile.trade.capitalize %> </p>
-           <p>Lives <%= Geocoder::Calculations.distance_between([profile.latitude,profile.longitude], [51.53258,-0.07681]).round(2) %>km away</p>
+           <p>Lives <%= Geocoder::Calculations.distance_between([profile.latitude, profile.longitude], [@lat, @lng]).round(2) %>km away</p>
           </div>
           <% end %>
         <% end %>
@@ -39,7 +39,6 @@
   <div class="map-container" id="map" data-markers="<%= @markers.to_json %>">
   </div>
 </div>
-
 
 </div>
 
