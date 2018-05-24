@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
 
   def index
     if current_user.role == "host"
-      json = JSON.parse(open("https://maps.googleapis.com/maps/api/geocode/json?address=#{params[:loc_search]}&key=AIzaSyBWlO4s372Rv78tUsPdBLt5c3m7jBlnuGE").read)
+      json = JSON.parse(open("https://maps.googleapis.com/maps/api/geocode/json?address=#{params[:loc_search]}&key=AIzaSyBNjPy1wDK7YgCsVpfxUctABMTcfL0OOa8").read)
       @lat = json["results"][0]["geometry"]["location"]["lat"]
       @lng = json["results"][0]["geometry"]["location"]["lng"]
       if params[:loc_search].blank?
@@ -14,7 +14,11 @@ class ProfilesController < ApplicationController
         @profiles = [""] if @profiles == nil
       elsif params[:loc_search].match(/\A[a-z]+\d+/)
         @profiles = policy_scope(Profile).where.not(latitude: nil, longitude: nil, first_name: nil).near([@lat, @lng], 5)
-
+        if @profiles == []
+          raise
+        else
+          index
+        end
       else
         sql_query = " \
         profiles.borough @@ :loc_search \
@@ -23,10 +27,7 @@ class ProfilesController < ApplicationController
         @profiles = policy_scope(Profile).where.not(latitude: nil, longitude: nil, first_name: nil).where(sql_query, loc_search: "%#{params[:loc_search]}%")
       end
         @markers = @profiles.map do |profile|
-        {
-          lat: profile.latitude,
-          lng: profile.longitude
-        }
+          { lat: profile.latitude, lng: profile.longitude }
         end
     else
       @profiles = [current_user]
