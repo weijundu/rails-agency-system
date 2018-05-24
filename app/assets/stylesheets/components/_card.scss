@@ -4,11 +4,15 @@
   display: flex;
   justify-content: space-between;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  height: 70vh;
+  min-height: 70vh;
+  background-color: $very-light-gray;
+  border-radius: 3px;
 }
 .card-container {
   background-color: #F4F4F4;
   width: 50%;
+  min-height: 100%;
+  border-radius: 3px;
 }
 .apprentice-card {
   width: 95%;
@@ -17,9 +21,31 @@
   margin: 10px;
   border-radius: 3px;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  padding: 5px;
+  padding: 15px;
+  position: relative;
 }
 .map-container {
   width: 50%;
-  height: 100%;
+  height: auto;
+}
+
+.name-card {
+  position: absolute;
+  top: -5px;
+}
+
+.location-card {
+  position: absolute;
+  bottom: 0px;
+}
+
+.form-control {
+  border-radius: 3px;
+  background-color: white;
+  color: $dark-blue;
+}
+
+.page-title {
+  color: $dark-blue;
+  font-weight: bold;
 }

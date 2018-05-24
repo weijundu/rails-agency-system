@@ -1,25 +1,23 @@
+require 'open-uri'
+
 class ProfilesController < ApplicationController
 
   before_action :set_profile, only:[:show, :edit, :update, :destroy]
 
   def index
     if current_user.role == "host"
-      if params[:borough].blank?
-        @profiles = policy_scope(Profile)
-        @profiles = [""] if @profiles == nil
-        comparing_date
+      if params[:loc_search].present?
+        @profiles = policy_scope(Profile).near(params[:loc_search], 8)
+
       else
-        @profiles = policy_scope(Profile).where.not(latitude: nil, longitude: nil, first_name: nil).where(borough: params[:borough].capitalize)
-        comparing_date
+        @profiles = policy_scope(Profile).all
       end
-        @markers = @profiles.map do |profile|
+      @markers = @profiles.map do |profile|
         {
           lat: profile.latitude,
           lng: profile.longitude
         }
-        end
-    else
-      @profiles = [current_user]
+      end
     end
   end
 
@@ -37,7 +35,6 @@ class ProfilesController < ApplicationController
   end
 
   def show
-
   end
 
   def edit
