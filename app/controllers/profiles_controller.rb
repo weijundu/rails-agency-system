@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  before_action :set_profile, only:[:show, :edit, :update, :delete]
+  before_action :set_profile, only:[:show, :edit, :update, :destroy]
 
   def index
     if current_user.role == "host"
@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
         @profiles = policy_scope(Profile)
         @profiles = [""] if @profiles == nil
         comparing_date
-      else    
+      else
         @profiles = policy_scope(Profile).where.not(latitude: nil, longitude: nil, first_name: nil).where(borough: params[:borough].capitalize)
         comparing_date
       end

@@ -1,7 +1,10 @@
+<div class="container profile-container">
+  <div class="profile-card">
+
 <% if @company.image?  %>
 <%= cl_image_tag @company.image.url(:thumbn)%>
 <% else %>
-<%= cl_image_tag("home-banner.jpg", width: 200, height: 200, crop: :fill) %>
+<%= cl_image_tag("home-banner.jpg", width: 200, height: 200, radius: :max, crop: :fill) %>
 <% end %>
 
 <h1><%= @company.name %></h1>
@@ -10,6 +13,9 @@
 <p>created by <%= @company.user.email %></p>
 <% if policy(@company).edit? %>
 <%= link_to "Edit", edit_company_path(@company), class: "btn btn-primary" %>
+<%= link_to "Delete", profile_path(@profile), method: :delete, class: "btn btn-danger"%>
 <% end %>
 
 <%= link_to "Back", options_path, class: "btn btn-primary"%>
+ </div>
+</div>

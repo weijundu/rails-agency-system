@@ -17,6 +17,10 @@ class ProfilePolicy < ApplicationPolicy
     record.user == user || !user_is_apprentice?
   end
 
+  def destroy?
+    record.user == user
+  end
+
 
 private
 def user_is_apprentice?
