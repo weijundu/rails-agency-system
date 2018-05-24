@@ -24,7 +24,7 @@
 
     <% if policy(@profile).edit? %>
       <%= link_to edit_profile_path(@profile) do %>
-        <i class="fas fa-pencil-alt" title='edit profile'></i>
+        <i class="fas fa-pencil-alt", title='edit profile'></i>
       <% end %>
     <% end %>
     <% if current_user.role == 'host' %>
@@ -32,15 +32,18 @@
     <% end %>
 
     <% if current_user.role == 'host' %>
-      <%= link_to "Back", profiles_path, class: "btn btn-primary"%>
+      <%= link_to  profiles_path do%>
+        <i class="fas fa-arrow-left", title="back"></i>
+      <% end %>
+
     <% elsif current_user.role == 'apprentice'%>
+      <%= link_to options_path do %>
+        <i class="fas fa-arrow-left", title="back"></i>
+      <% end %>
 
-
-      <%= link_to "Back", options_path, class: "btn btn-primary"%>
       <%= link_to  user_registration_path(current_user), method: :delete, data: { confirm: "You sure?" } do%>
-<i class="far fa-trash-alt brand-red" title='deactive account'></i>
+        <i class="far fa-trash-alt brand-red", title="deactive account"></i>
+      <% end %>
     <% end %>
-    <% end %>
-
   </div>
 </div>
