@@ -1,28 +1,48 @@
-<% if @profile.image?  %>
-<%= cl_image_tag @profile.image.url(:thumbn)%>
-<% else %>
-<%= cl_image_tag("profile-photo.jpg", width: 200, height: 200, crop: :fill) %>
-<% end %>
+<%# if @user.active = false %>
+  <!-- <div>some html</div> -->
 
-<h1><%= @profile.first_name%> <%= @profile.last_name%></h1>
-<p>Trade: <%= @profile.trade %></p>
-<p>Skills: <%= @profile.skills %></p>
-<p>Borough: <%= @profile.borough %></p>
-<p>Personal statement: <%= @profile.cv %></p>
-<% if current_user.role == 'apprentice'%>
-  <p>Postcode: <%= @profile.address %></p>
-<% end %>
+<div class="profile-container container">
+  <div class="profile-card">
+
+    <% if @profile.image?  %>
+    <%= cl_image_tag @profile.image.url(:thumbn)%>
+    <% else %>
+    <%= cl_image_tag("profile-photo.jpg", width: 200, height: 200, radius: :max, crop: :fill) %>
+    <% end %>
 
 
-<% if policy(@profile).edit? %>
-  <%= link_to "Edit", edit_profile_path(@profile), class: "btn btn-primary" %>
-<% end %>
-<% if current_user.role == 'host' %>
-  <%= link_to "Add contract", new_profile_contract_path(@profile), class: "btn btn-primary" %>
-<% end %>
+    <h1><%= @profile.first_name%> <%= @profile.last_name%></h1>
+    <p><strong>Trade:</strong> <%= @profile.trade %></p>
+    <p><strong>Skills:</strong> <%= @profile.skills %></p>
+    <p><strong>Borough:</strong> <%= @profile.borough %></p>
+    <p><strong>Personal statement:</strong> <%= @profile.cv %></p>
+    <% if current_user.role == 'apprentice'%>
+      <p><strong>Address:</strong> <%= @profile.address %></p>
+    <% end %>
 
-<% if current_user.role == 'host' %>
-  <%= link_to "Back", profiles_path, class: "btn btn-primary"%>
-<% elsif current_user.role == 'apprentice'%>
-  <%= link_to "Back", options_path, class: "btn btn-primary"%>
-<% end %>
+
+    <% if policy(@profile).edit? %>
+      <%= link_to edit_profile_path(@profile) do %>
+        <i class="fas fa-pencil-alt", title='edit profile'></i>
+      <% end %>
+    <% end %>
+    <% if current_user.role == 'host' %>
+      <%= link_to "Add contract", new_profile_contract_path(@profile), class: "btn btn-back" %>
+    <% end %>
+
+    <% if current_user.role == 'host' %>
+      <%= link_to  profiles_path do%>
+        <i class="fas fa-arrow-left", title="back"></i>
+      <% end %>
+
+    <% elsif current_user.role == 'apprentice'%>
+      <%= link_to options_path do %>
+        <i class="fas fa-arrow-left", title="back"></i>
+      <% end %>
+
+      <%= link_to  user_registration_path(current_user), method: :delete, data: { confirm: "You sure?" } do%>
+        <i class="far fa-trash-alt brand-red", title="deactive account"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>

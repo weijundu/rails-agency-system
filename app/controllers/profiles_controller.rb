@@ -2,19 +2,22 @@ require 'open-uri'
 
 class ProfilesController < ApplicationController
 
-  before_action :set_profile, only:[:show, :edit, :update, :delete]
+  before_action :set_profile, only:[:show, :edit, :update, :destroy]
 
   def index
-    if params[:loc_search].present?
-      @profiles = policy_scope(Profile).near(params[:loc_search], 8)
-    else
-      @profiles = policy_scope(Profile).all
-    end
-    @markers = @profiles.map do |profile|
-      {
-        lat: profile.latitude,
-        lng: profile.longitude
-      }
+    if current_user.role == "host"
+      if params[:loc_search].present?
+        @profiles = policy_scope(Profile).near(params[:loc_search], 8)
+
+      else
+        @profiles = policy_scope(Profile).all
+      end
+      @markers = @profiles.map do |profile|
+        {
+          lat: profile.latitude,
+          lng: profile.longitude
+        }
+      end
     end
   end
 

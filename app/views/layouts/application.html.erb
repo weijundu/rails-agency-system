@@ -15,9 +15,14 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <div class="main-wrapper">
+    <% if params[:controller] == "pages" && params[:action] == "home" %>
       <%= yield %>
-    </div>
+    <% else %>
+      <div class="main-wrapper">
+        <%= yield %>
+      </div>
+    <% end %>
+
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
