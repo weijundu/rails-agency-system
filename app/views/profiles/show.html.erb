@@ -1,15 +1,15 @@
 <%# if @user.active = false %>
   <!-- <div>some html</div> -->
-<h1 class="text-center">Profile</h1>
-<div class="profile-container container">
-  <div class="profile-card">
+<div class="container">
+  <h1 class="text-center">Profile</h1>
+  <div class="profile-container container">
+    <div class="profile-card">
 
-    <% if @profile.image?  %>
-    <%= cl_image_tag @profile.image.url(:thumbn)%>
-    <% else %>
-    <%= cl_image_tag("profile-photo.jpg", width: 200, height: 200, radius: :max, crop: :fill) %>
-    <% end %>
-
+      <% if @profile.image?  %>
+      <%= cl_image_tag @profile.image.url(:thumbn)%>
+      <% else %>
+      <%= cl_image_tag("profile-photo.jpg", width: 200, height: 200, radius: :max, crop: :fill) %>
+      <% end %>
 
     <h1><%= @profile.first_name%>
       <% if current_user.role == 'apprentice' %>
@@ -24,31 +24,32 @@
       <p><strong>Address:</strong> <%= @profile.address %></p>
     <% end %>
 
+      <% if policy(@profile).edit? %>
+        <%= link_to edit_profile_path(@profile) do %>
+          <i class="fas fa-pencil-alt", title='edit profile'></i>
+        <% end %>
+      <% end %>
+      <% if current_user.role == 'host' %>
+        <%= link_to "Add contract", new_profile_contract_path(@profile), class: "btn btn-back" %>
+      <% end %>
 
-    <% if policy(@profile).edit? %>
-      <%= link_to edit_profile_path(@profile) do %>
-        <i class="fas fa-pencil-alt", title='edit profile'></i>
+      <% if current_user.role == 'host' %>
+        <%= link_to  profiles_path do%>
+          <i class="fas fa-arrow-left", title="back"></i>
+        <% end %>
+
+      <% elsif current_user.role == 'apprentice'%>
+        <%= link_to options_path do %>
+          <i class="fas fa-arrow-left", title="back"></i>
+        <% end %>
+
+        <%= link_to  user_registration_path(current_user), method: :delete, data: { confirm: "You sure?" } do%>
+          <i class="far fa-trash-alt brand-red", title="deactive account"></i>
+        <% end %>
       <% end %>
     <% end %>
-    <% if current_user.role == 'host' %>
-      <%= link_to "Add contract", new_profile_contract_path(@profile), class: "btn btn-back" %>
-    <% end %>
 
-    <% if current_user.role == 'host' %>
-      <%= link_to  profiles_path do%>
-        <i class="fas fa-arrow-left", title="back"></i>
-      <% end %>
-
-    <% elsif current_user.role == 'apprentice'%>
-      <%= link_to options_path do %>
-        <i class="fas fa-arrow-left", title="back"></i>
-      <% end %>
-
-      <%= link_to  user_registration_path(current_user), method: :delete, data: { confirm: "You sure?" } do%>
-        <i class="far fa-trash-alt brand-red", title="deactive account"></i>
-      <% end %>
-    <% end %>
-
+    </div>
   </div>
 </div>
 <br>

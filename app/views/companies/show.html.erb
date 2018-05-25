@@ -1,29 +1,37 @@
-<h1 class="text-center">Profile</h1>
-<div class="container profile-container">
-  <div class="profile-card">
+<div class="container">
 
-<% if @company.image?  %>
-  <%= cl_image_tag @company.image.url(:thumbn)%>
-<% else %>
-  <%= cl_image_tag("home-banner.jpg", width: 200, height: 200, radius: :max, crop: :fill) %>
-<% end %>
+  <h1 class="text-center">Profile</h1>
+  <div class="container profile-container">
+    <div class="profile-card">
 
-<h1><%= @company.name %></h1>
-<p><%= @company.intro %></p>
-<p><%= @company.website %></p>
-<p>created by <%= @company.user.email %></p>
-
-<% if policy(@company).edit? %>
-  <%= link_to edit_company_path(@company) do %>
-    <i class="fas fa-pencil-alt", title='edit profile'></i>
+  <% if @company.image?  %>
+    <%= cl_image_tag @company.image.url(:thumbn)%>
+  <% else %>
+    <%= cl_image_tag("home-banner.jpg", width: 200, height: 200, radius: :max, crop: :fill) %>
   <% end %>
-  <%= link_to  user_registration_path(current_user), method: :delete, data: { confirm: "You sure?" } do%>
-    <i class="far fa-trash-alt brand-red", title="deactive account"></i>
-  <% end %>
-<% end %>
 
-<%= link_to options_path do%>
-  <i class="fas fa-arrow-left", title="back"></i>
-<% end %>
- </div>
+  <h1><%= @company.name %></h1>
+  <p><strong>About:</strong><%= @company.intro %></p>
+  <p><strong>Website:</strong><%= @company.website %></p>
+
+  <% if policy(@company).edit? %>
+    <%= link_to edit_company_path(@company) do %>
+      <i class="fas fa-pencil-alt", title='edit profile'></i>
+    <% end %>
+    <%= link_to  user_registration_path(current_user), method: :delete, data: { confirm: "You sure?" } do%>
+      <i class="far fa-trash-alt brand-red", title="deactive account"></i>
+    <% end %>
+  <% end %>
+
+  <% if current_user.role == 'host' %>
+        <%= link_to  profiles_path do%>
+          <i class="fas fa-arrow-left", title="back"></i>
+        <% end %>
+  <% elsif current_user.role == 'apprentice' %>
+  <%= link_to companies_path do%>
+    <i class="fas fa-arrow-left", title="back"></i>
+  <% end %>
+  <% end %>
+   </div>
+  </div>
 </div>
