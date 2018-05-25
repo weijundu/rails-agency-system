@@ -1,6 +1,6 @@
 <h1><%= @contract.note %></h1>
 <p><%= @contract.start_date %>-<%= @contract.end_date %> </p>
-<p>for <%= @contract.profile.name %></p>
+<p>for <%= @contract.profile.first_name %></p>
 <p>created by <%= @contract.user.email %></p>
 <% if policy(@contract).edit? %>
 <%= link_to "Edit", edit_contract_path(@contract) %>

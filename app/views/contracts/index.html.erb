@@ -1,8 +1,8 @@
 <div class="container">
 
-<%= link_to "Back", options_path, class: "text-right"%>
 <h1 class="title">Contracts</h1>
     <div class="no-map-container container">
+<%= link_to "Back", options_path, class: "text-right"%>
       <div class="row">
         <% @contracts.each do |contract|%>
            <% if contract.user == current_user || contract.profile.user == current_user %>
@@ -10,6 +10,9 @@
                   <div class="user-card-container">
 
                     <div class="user-contract-card">
+                      <%= link_to edit_contract_path(contract) do %>
+      <i class="fas fa-pencil-alt", title='edit profile'></i>
+    <% end %>
                        <% if contract.profile.image?  %>
                       <%= cl_image_tag @profile.image.url(:thumbn)%>
                       <% else %>

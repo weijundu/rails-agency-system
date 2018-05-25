@@ -24,6 +24,7 @@ class ContractsController < ApplicationController
 
   def edit
 
+
   end
 
   def update
