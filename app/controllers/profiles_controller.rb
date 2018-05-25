@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only:[:show, :edit, :update, :destroy]
 
   def index
+    @user = current_user
     if current_user.role == "host"
       if params[:loc_search].present?
         @profiles = policy_scope(Profile).near(params[:loc_search], 8)
