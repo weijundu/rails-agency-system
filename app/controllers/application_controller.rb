@@ -22,6 +22,20 @@ class ApplicationController < ActionController::Base
   end
 
     def after_sign_in_path_for(resource)
-      request.env['omniauth.origin'] || options_path
+      if current_user.role == "host"
+        if current_user.company == nil
+          new_company_path
+        else
+          request.env['omniauth.origin'] || options_path
+        end
+      elsif current_user.role == "apprentice"
+        if current_user.profile == nil
+          new_profile_path
+        else
+          request.env['omniauth.origin'] || options_path
+        end
+      else
+        request.env['omniauth.origin'] || options_path
+      end
     end
 end
