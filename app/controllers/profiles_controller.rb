@@ -8,7 +8,6 @@ class ProfilesController < ApplicationController
     if current_user.role == "host"
       if params[:loc_search].present?
         @profiles = policy_scope(Profile).near(params[:loc_search], 8)
-
       else
         @profiles = policy_scope(Profile).all
       end
@@ -17,6 +16,11 @@ class ProfilesController < ApplicationController
           lat: profile.latitude,
           lng: profile.longitude
         }
+      end
+      if params[:trade].present?
+        @profiles = policy_scope(Profile).where("trade ILIKE ?", "%#{params[:trade]}%")
+      else
+        @profiles = policy_scope(Profile).all
       end
     end
   end

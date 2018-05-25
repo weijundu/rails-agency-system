@@ -9,6 +9,18 @@
 
     <% if user_signed_in? %>
 
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+          <div class="dropdown">
+            <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+            <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+              <li> <%= link_to "Dashboard", options_path %>
+              <li> <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
       <!-- Links when logged in -->
 
     <% if current_user.role == 'apprentice'%>
@@ -56,24 +68,9 @@
   </div>
 
 
-<% if user_signed_in? %>
-  <!-- Dropdown list appearing on mobile only -->
-        <div class="navbar-wagon-item hidden-md hidden-lg">
-          <div class="dropdown">
-            <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-            <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-              <li> <%= link_to "Dashboard", options_path %>
-              <li> <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </ul>
-          </div>
-        </div>
+<!-- Dropdown list appearing on mobile only -->
 
-        <% else %>
 
-              <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link login-button" %>
 
-<% end %>
 </div>
 
