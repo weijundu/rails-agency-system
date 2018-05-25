@@ -10,12 +10,18 @@
         <%= t.input :phone_number, class: "form-control" %>
         <%= t.input :image %>
         <%= t.input :image_cache, as: :hidden %>
-        <%= t.submit class: "btn btn-primary" %>
-        <%= link_to "Back", options_path, class: "btn btn-primary"%>
-        <% unless @company.id == nil %>
-          <%= link_to "Delete", company_path(@company), method: :delete, data: { confirm: "Are you sure?" } %>
-        <% end %>
+        <%= t.submit class: "btn btn-primary btn-submit" %>
       <% end %>
     </div>
+      <%= link_to :back do %>
+        <i class="fas fa-arrow-left profile-back", title="back"></i>
+      <% end %>
+      <% unless @company.id == nil %>
+        <%= link_to  user_registration_path(current_user), method: :delete, data: { confirm: "You sure?" } do%>
+          <i class="far fa-trash-alt brand-red", title="deactive account"></i>
+        <% end %>
+      <% end %>
+
+
   </div>
 </div>
