@@ -1,68 +1,85 @@
 <div class="container">
+  <br>
   <h1 class="text-center">Profile</h1>
-  <div class="profile-container container">
-    <div class="profile-card">
+  <div class="info-container">
+    <div class="profile-container">
+      <div class="profile-card">
 
-      <% if @profile.image?  %>
-      <%= cl_image_tag @profile.image.url(:thumbn)%>
-      <% else %>
-      <%= cl_image_tag("profile-photo.jpg", width: 200, height: 200, radius: :max, crop: :fill) %>
-      <% end %>
-
-    <h1><%= @profile.first_name%>
-      <% if current_user.role == 'apprentice' %>
-        <%= @profile.last_name%>
-      <% end %>
-      </h1>
-    <p><strong>Trade:</strong> <%= @profile.trade %></p>
-    <p><strong>Skills:</strong> <%= @profile.skills %></p>
-    <p><strong>Borough:</strong> <%= @profile.borough %></p>
-    <p><strong>Personal statement:</strong> <%= @profile.cv %></p>
-    <% if current_user.role == 'apprentice'%>
-      <p><strong>Address:</strong> <%= @profile.address %></p>
-    <% end %>
-
-      <% if policy(@profile).edit? %>
-        <%= link_to edit_profile_path(@profile) do %>
-          <i class="fas fa-pencil-alt", title='edit profile'></i>
+        <% if @profile.image?  %>
+        <%= cl_image_tag @profile.image.url(:thumbn)%>
+        <% else %>
+        <%= cl_image_tag("profile-photo.jpg", width: 200, height: 200, radius: :max, crop: :fill) %>
         <% end %>
+
+      <h1><%= @profile.first_name%>
+        <% if current_user.role == 'apprentice' %>
+          <%= @profile.last_name%>
+        <% end %>
+        </h1>
+      <p><strong>Trade:</strong> <%= @profile.trade %></p>
+      <p><strong>Skills:</strong> <%= @profile.skills %></p>
+      <p><strong>Borough:</strong> <%= @profile.borough %></p>
+      <p><strong>Personal statement:</strong> <%= @profile.cv %></p>
+      <% if current_user.role == 'apprentice'%>
+        <p><strong>Address:</strong> <%= @profile.address %></p>
       <% end %>
 
-      <% if current_user.role == 'host' %>
-        <%= link_to "Add contract", new_profile_contract_path(@profile), class: "btn btn-back" %>
-      <% end %>
+        <% if policy(@profile).edit? %>
+          <%= link_to edit_profile_path(@profile) do %>
+            <i class="fas fa-pencil-alt", title='edit profile'></i>
+          <% end %>
+        <% end %>
 
-      <% if current_user.role == 'host' %>
-        <%= link_to  profiles_path do%>
-          <i class="fas fa-arrow-left", title="back"></i>
+        <% if current_user.role == 'host' %>
+          <%= link_to "Add contract", new_profile_contract_path(@profile), class: "btn btn-back btn-submit btn btn-primary" %>
         <% end %>
-      <% elsif current_user.role == 'apprentice'%>
-        <%= link_to options_path do %>
-          <i class="fas fa-arrow-left", title="back"></i>
+
+        <% if current_user.role == 'host' %>
+          <%= link_to  profiles_path do%>
+            <i class="fas fa-arrow-left", title="back"></i>
+          <% end %>
+        <% elsif current_user.role == 'apprentice'%>
+          <%= link_to options_path do %>
+            <i class="fas fa-arrow-left", title="back"></i>
+          <% end %>
+          <%= link_to  user_registration_path(current_user), method: :delete, data: { confirm: "You sure?" } do%>
+            <i class="far fa-trash-alt brand-red", title="deactive account"></i>
+          <% end %>
         <% end %>
-        <%= link_to  user_registration_path(current_user), method: :delete, data: { confirm: "You sure?" } do%>
-          <i class="far fa-trash-alt brand-red", title="deactive account"></i>
-        <% end %>
+      </div>
+    </div>
+    <div class="review-container">
+      <h3 class="text-center">
+        <%= pluralize @profile.reviews.size, "review" %>
+      <% total = 0 %>
+      <% @profile.reviews.each do |review| %>
+        <% total += review.rating %>
       <% end %>
+      <% average = total / @profile.reviews.count %>
+      <% average.times do %>
+        <i class="fas fa-star"></i>
+      <% end %>
+      <% (5 - average).times do %>
+        <i class="far fa-star"></i>
+      <% end %>
+      </h3>
+      <hr>
+      <br>
+      <div id="reviews">
+        <% if (@profile.reviews.blank?) && (current_user != @profile.user) %>
+          Be the first to leave a review for <%= @profile.first_name %>!
+        <% else %>
+          <% @profile.reviews.each do |review| %>
+            <%= render 'reviews/show', review: review %>
+          <% end %>
+        <% end %>
+      </div>
+      <br>
+        <% unless current_user == @profile.user %>
+          <%= render 'reviews/form', profile: @profile, review: @review %>
+        <% end %>
+
+    </div>
 
     </div>
   </div>
-</div>
-<br>
-<hr>
-<h2 class="text-center">
-  <%= pluralize @profile.reviews.size, "review" %>
-</h2>
-<div id="reviews">
-  <% if (@profile.reviews.blank?) && (current_user != @profile.user) %>
-    Be the first to leave a review for <%= @profile.first_name %>!
-  <% else %>
-    <% @profile.reviews.each do |review| %>
-      <%= render 'reviews/show', review: review %>
-    <% end %>
-  <% end %>
-</div>
-<br>
-  <% unless current_user == @profile.user %>
-    <%= render 'reviews/form', profile: @profile, review: @review %>
-  <% end %>

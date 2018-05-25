@@ -1,5 +1,5 @@
 <%= simple_form_for([ profile, review ], remote: true) do |form| %>
   <%= form.input :content, as: :text %>
   <%= form.input :rating, collection: (1..5) %>
-  <%= form.button :submit %>
+  <%= form.button :submit, class: "btn btn-primary btn-submit" %>
 <% end %>
