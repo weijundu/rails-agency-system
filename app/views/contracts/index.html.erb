@@ -1,12 +1,30 @@
-<h1>Contracts</h1>
-<ul>
-  <% @contracts.each do |contract|%>
-  <% if contract.user == current_user || contract.profile.user == current_user %>
-  <li>
-    <%= contract.note %> for <%= contract.profile.first_name %> created by <%= link_to contract.user.company.name, company_path(contract.user.company)  %> <%= contract.start %> <%= contract.finished %>
-  </li>
-  <% end %>
-  <% end %>
-</ul>
+<div class="container">
 
-<%= link_to "Back", options_path, class: "btn btn-primary"%>
+<%= link_to "Back", options_path, class: "text-right"%>
+<h1 class="title">Contracts</h1>
+    <div class="no-map-container container">
+      <div class="row">
+        <% @contracts.each do |contract|%>
+           <% if contract.user == current_user || contract.profile.user == current_user %>
+              <div class="col-xs-12 col-md-6">
+                  <div class="user-card-container">
+
+                    <div class="user-contract-card">
+                       <% if contract.profile.image?  %>
+                      <%= cl_image_tag @profile.image.url(:thumbn)%>
+                      <% else %>
+                      <%= cl_image_tag("profile-photo.jpg", width: 200, height: 200, radius: :max, crop: :fill) %>
+                      <% end %>
+                      <h3> <%= contract.profile.first_name %> </h3>
+                      <p>"<%= contract.note %>"</p>
+                      <p>Starts on: <strong><%= contract.start %></strong>  Until: <strong><%= contract.finished %></strong></p>
+                    </div>
+                  </div>
+                <% end %>
+            </div>
+        <% end %>
+      </div>
+
+    </div>
+
+</div>

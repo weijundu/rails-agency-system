@@ -57,6 +57,7 @@
   min-height: 100%;
   border-radius: 3px;
   padding: 20px;
+  position: relative;
 }
 .no-map-card {
   height: 15vh;
@@ -72,4 +73,28 @@
 
 .title {
   text-align: center;
+}
+
+.user-card-container {
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  padding: 15px;
+  position: relative;
+  min-width: 210px;
+  margin-top: 20px;
+}
+
+.user-contract-card {
+  text-align: center;
+}
+
+.back-arrow {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  opacity: .2;
+  &:hover {
+    opacity: 1;
+  }
 }
