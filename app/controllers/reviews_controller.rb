@@ -5,9 +5,15 @@ class ReviewsController < ApplicationController
     authorize @review
     @review.profile = @profile
     if @review.save
-      redirect_to profile_path(@profile)
+      respond_to do |format|
+        format.html { redirect_to profile_path(@profile) }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
     else
-      render 'profiles/show'
+      respond_to do |format|
+        format.html { render 'profiless/show' }
+        format.js
+      end
     end
   end
 

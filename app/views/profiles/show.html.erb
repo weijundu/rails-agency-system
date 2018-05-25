@@ -51,6 +51,8 @@
 
   </div>
 </div>
+<br>
+<hr>
 <h2 class="text-center">
   <%= pluralize @profile.reviews.size, "review" %>
 </h2>
@@ -62,7 +64,8 @@
       <%= render 'reviews/show', review: review %>
     <% end %>
   <% end %>
+</div>
+<br>
   <% unless current_user == @profile.user %>
     <%= render 'reviews/form', profile: @profile, review: @review %>
   <% end %>
-</div>
