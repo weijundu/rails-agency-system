@@ -24,14 +24,14 @@
       <!-- Links when logged in -->
 
     <% if current_user.role == 'apprentice'%>
-     <% unless current_user.profiles.first == nil%>
-        <%= link_to profile_path(current_user.profiles.first) do %>
+     <% unless current_user.profile == nil%>
+        <%= link_to profile_path(current_user.profile) do %>
         <div class="circular_name initial">
-           <%= current_user.profiles.first.first_name[0]  %>
+           <%= current_user.profile.first_name[0]  %>
         </div>
         <% end %>
         <% else %>
-          <%= link_to options_path(current_user.profiles.first) do %>
+          <%= link_to options_path(current_user.profile) do %>
           <div class="circular_name initial">
            <i class="fal fa-user-alt"></i>
         </div>
@@ -40,15 +40,15 @@
         <% end %>
 
     <% elsif current_user.role == 'host'%>
-          <% unless current_user.companies.first == nil%>
-          <%= link_to company_path(current_user.companies.first) do %>
+          <% unless current_user.company == nil%>
+          <%= link_to company_path(current_user.company) do %>
         <div class="circular_name initial ">
-          <%= current_user.companies.first.name[0] %>
+          <%= current_user.company.name[0] %>
         </div>
         <% end %>
 
         <% else %>
-           <%= link_to options_path(current_user.profiles.first) do %>
+           <%= link_to options_path(current_user.profile) do %>
           <div class="circular_name initial">
            <i class="fal fa-user-alt"></i>
         </div>

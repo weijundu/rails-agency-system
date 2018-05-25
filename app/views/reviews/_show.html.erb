@@ -1,0 +1,17 @@
+<!-- empty -->
+<!-- <i class="far fa-star"></i> -->
+<div class="review-content">
+ <li data-review-id="<%= review.id %>">
+    <% review.rating.to_i.times do %>
+      <i class="fas fa-star"></i>
+    <% end %>
+   <p><%= review.content %></p>
+    <p><%= review.user.company.name %></p>
+    <%= link_to edit_profile_review_path(@profile, review) do %>
+      <i class="fas fa-pencil-alt", title='edit profile'></i>
+    <% end %>
+    <%= link_to profile_review_path(@profile, review), method: :delete, remote: true, data: {confirm: 'Are you sure?'} do %>
+      <i class="far fa-trash-alt"></i>
+    <% end %>
+  </li>
+</div>
