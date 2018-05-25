@@ -7,8 +7,8 @@ class ProfilesController < ApplicationController
   def index
     @user = current_user
     if current_user.role == "host"
-      if params[:loc_search].present?
-        @profiles = policy_scope(Profile).near(params[:loc_search], 8)
+      if params[:location].present?
+        @profiles = policy_scope(Profile).near(params[:location], 8)
       else
         @profiles = policy_scope(Profile).all
       end
