@@ -10,11 +10,6 @@
   transition: 0.3s background-color ease;
 }
 
-
-.navbar-wagon-solid {
-background-color: #2E4057;
-}
-
 /* Logo */
 .navbar-wagon-brand img {
   height: 50px;
@@ -82,9 +77,9 @@ background-color: #2E4057;
 }
 
 .circular_name {
-  height:33px;
-  width:33px;
-  background-color: black;
+  height:50px;
+  width:50px;
+  background-color: #2E4057;
   border-radius: 50%;
   display:flex;
   justify-content: center;
@@ -94,6 +89,7 @@ background-color: #2E4057;
 .initial {
   color: white;
   font-weight: bolder;
+  font-size: 30px;
 }
 
 a .initial:hover{
@@ -138,7 +134,11 @@ a .initial:hover{
 
 .navbar-wagon-solid {
 background-color: #2E4057;
-a {
-  color: white;
-}
+  a {
+    color: white;
+  }
+  .circular_name {
+    background-color: #FFFDF9;
+    color: #2E4057;
+  }
 }
