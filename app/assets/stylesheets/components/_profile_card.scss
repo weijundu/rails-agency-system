@@ -2,15 +2,15 @@
   background-color: blue;
   width: 50%;
   margin-top: 5vh;
-  background-color: #684756;
+  background-color: #eaeced;
   // margin-bottom: 5vh;
   min-width: 400px;
   border-radius: 3px;
-  box-shadow: 0 0 60px rgba(0,0,0,0.7);
+  box-shadow: 0 0 60px rgba(0,0,0,0.1);
 }
 
 .profile-card {
-  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.1);
+  // box-shadow: 0 3px 4px 0 rgba(0,0,0,0.1);
   transition: 0.3s;
   background-color: white;
   margin: 40px;
@@ -23,6 +23,7 @@
   padding-bottom: 40px;
   border-radius: 5px;
   position: relative;
+  color: #2E4057;
 }
 
 .fa-arrow-left {
