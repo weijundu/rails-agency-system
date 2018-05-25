@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :profiles do
     resources :contracts, only:[:new, :create]
-    resources :reviews, only: :create
+    resources :reviews, only: [:create, :destroy, :edit, :update]
   end
 
   resources :companies

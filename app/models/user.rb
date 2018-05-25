@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :profiles
   has_many :contracts
   has_many :companies
+  has_many :reviews
 end
