@@ -1,7 +1,7 @@
 <h1>Companies</h1>
 <ul>
   <% @companies.each do |company|%>
-  <% if company.user == current_user || current_user.role == 'host'%>
+  <% if company.user == current_user || current_user.role == 'apprentice'%>
   <li>
     <%=link_to company.name, company_path(company)%> created by <%= company.user.email %>
   </li>
