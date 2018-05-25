@@ -11,7 +11,11 @@
     <% end %>
 
 
-    <h1><%= @profile.first_name%> <%= @profile.last_name%></h1>
+    <h1><%= @profile.first_name%>
+      <% if current_user.role == 'apprentice' %>
+        <%= @profile.last_name%>
+      <% end %>
+      </h1>
     <p><strong>Trade:</strong> <%= @profile.trade %></p>
     <p><strong>Skills:</strong> <%= @profile.skills %></p>
     <p><strong>Borough:</strong> <%= @profile.borough %></p>
@@ -44,5 +48,21 @@
         <i class="far fa-trash-alt brand-red", title="deactive account"></i>
       <% end %>
     <% end %>
+
   </div>
+</div>
+<h2 class="text-center">
+  <%= pluralize @profile.reviews.size, "review" %>
+</h2>
+<div id="reviews">
+  <% if (@profile.reviews.blank?) && (current_user != @profile.user) %>
+    Be the first to leave a review for <%= @profile.first_name %>!
+  <% else %>
+    <% @profile.reviews.each do |review| %>
+      <%= render 'reviews/show', review: review %>
+    <% end %>
+  <% end %>
+  <% unless current_user == @profile.user %>
+    <%= render 'reviews/form', profile: @profile, review: @review %>
+  <% end %>
 </div>
