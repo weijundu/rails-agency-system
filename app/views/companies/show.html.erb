@@ -9,9 +9,8 @@
 <% end %>
 
 <h1><%= @company.name %></h1>
-<p><%= @company.intro %></p>
-<p><%= @company.website %></p>
-<p>created by <%= @company.user.email %></p>
+<p><strong>About:</strong><%= @company.intro %></p>
+<p><strong>Website:</strong><%= @company.website %></p>
 
 <% if policy(@company).edit? %>
   <%= link_to edit_company_path(@company) do %>
@@ -22,8 +21,14 @@
   <% end %>
 <% end %>
 
-<%= link_to options_path do%>
+<% if current_user.role == 'host' %>
+      <%= link_to  profiles_path do%>
+        <i class="fas fa-arrow-left", title="back"></i>
+      <% end %>
+<% elsif current_user.role == 'apprentice' %>
+<%= link_to companies_path do%>
   <i class="fas fa-arrow-left", title="back"></i>
+<% end %>
 <% end %>
  </div>
 </div>

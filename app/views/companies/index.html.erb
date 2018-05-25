@@ -1,15 +1,30 @@
-<h1>Companies</h1>
-<ul>
-  <% @companies.each do |company|%>
-  <% if company.user == current_user || current_user.role == 'apprentice'%>
-  <li>
-    <%=link_to company.name, company_path(company)%> created by <%= company.user.email %>
-  </li>
-  <% end %>
-  <% end %>
-</ul>
+<div class="container">
+<%= link_to "Back", options_path, class: "text-right"%>
 
-<% if @companies.where(user: current_user).count == 0 && policy(Company).new? %>
-<%= link_to "Add company", new_company_path, class: "btn btn-primary"%>
-<% end %>
-<%= link_to "Back", options_path, class: "btn btn-primary"%>
+<h1>Companies</h1>
+
+
+
+  <div class="card-and-map-container">
+    <div class="card-container">
+      <% @companies.each do |company|%>
+        <% unless company == [""] %>
+          <% if company.user == current_user || current_user.role == 'apprentice'%>
+            <%= link_to company_path(company) do %>
+              <div class="apprentice-card">
+                <div class="name-card">
+                  <h3> <%= company.name %> </h3>
+                  <p><%= company.website %> </p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if @companies.where(user: current_user).count == 0 && policy(Company).new? %>
+        <%= link_to "Add company", new_company_path, class: "btn btn-primary"%>
+      <% end %>
+    </div>
+  </div>
+</div>
