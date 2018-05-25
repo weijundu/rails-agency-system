@@ -7,11 +7,14 @@
   <%# end %>
 <%# end %>
 <div class="container">
-<%= link_to "Back", profiles_path, class: "text-right"%>
+<%= link_to "Back", options_path, class: "text-right"%>
   <h1 class="text-center page-title">Search for an Apprentice</h1>
   <br>
   <div class="search-form text-center">
     <%= form_tag profiles_path, class: "form-inline", method: :get do %>
+       <%= text_field_tag :trade, params[:trade],
+         class: "form-control", id: "trade_search",
+         placeholder: "Search by trade" %>
        <%= text_field_tag :location, params[:location],
          class: "form-control", id: "loc_search",
          placeholder: "Search by location" %>
